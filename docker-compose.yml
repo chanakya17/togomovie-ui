@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  togomovie-ui:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_BACKEND_URL: ${BACKEND_URL:-http://localhost:8080}
+      NEXT_PUBLIC_AI_URL:      ${AI_URL:-http://localhost:8081}
