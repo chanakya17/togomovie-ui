@@ -16,7 +16,7 @@ export function ReviewSection({ movieId }: { movieId: number }) {
 
   useEffect(() => {
     setAuthed(isAuthenticated())
-    reviewsApi.list(movieId).then(setReviews).catch(() => {})
+    reviewsApi.list(movieId).then(page => setReviews(page.content)).catch(() => {})
   }, [movieId])
 
   async function submitReview(e: React.FormEvent) {
