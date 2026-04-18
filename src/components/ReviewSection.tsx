@@ -23,7 +23,7 @@ export function ReviewSection({ movieId }: { movieId: number }) {
     e.preventDefault()
     setLoading(true)
     try {
-      const review = await reviewsApi.create(movieId, { rating, comment: comment || undefined })
+      const review = await reviewsApi.create(movieId, { rating, content: comment || undefined })
       setReviews(prev => [review, ...prev])
       setComment('')
       setRating(5)
@@ -81,7 +81,7 @@ export function ReviewSection({ movieId }: { movieId: number }) {
                   {r.rating}/5
                 </div>
               </div>
-              {r.comment && <p className="text-sm text-zinc-300">{r.comment}</p>}
+              {r.content && <p className="text-sm text-zinc-300">{r.content}</p>}
               <p className="text-xs text-zinc-500">{formatDate(r.createdAt)}</p>
             </div>
           ))}

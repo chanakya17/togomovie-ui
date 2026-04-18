@@ -93,12 +93,12 @@ export default async function MovieDetailPage({ params }: Props) {
                 {movie.watchLinks.map(link => (
                   <a
                     key={link.id}
-                    href={link.url}
+                    href={link.watchUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary text-sm"
                   >
-                    {link.platform} {link.quality && `(${link.quality})`}
+                    {link.providerName}{link.regionCode && ` (${link.regionCode})`}
                   </a>
                 ))}
               </div>
