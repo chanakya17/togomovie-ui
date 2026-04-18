@@ -57,7 +57,8 @@ export const moviesApi = {
 // ─── Reviews ──────────────────────────────────────────────────────────────────
 
 export const reviewsApi = {
-  list:   (movieId: number): Promise<Review[]> => get(`/movies/${movieId}/reviews`),
+  list:   (movieId: number, page = 0, size = 20): Promise<Page<Review>> =>
+    get(`/movies/${movieId}/reviews`, { page, size }),
   create: (movieId: number, data: ReviewRequest): Promise<Review> =>
     post(`/movies/${movieId}/reviews`, data),
   delete: (movieId: number, reviewId: number): Promise<void> =>
@@ -67,17 +68,17 @@ export const reviewsApi = {
 // ─── Watchlist ────────────────────────────────────────────────────────────────
 
 export const watchlistApi = {
-  list:   (): Promise<MovieSummary[]> => get('/watchlist'),
-  add:    (movieId: number): Promise<void> => post(`/watchlist/${movieId}`, {}),
-  remove: (movieId: number): Promise<void> => del(`/watchlist/${movieId}`),
+  list:   (): Promise<MovieSummary[]> => get('/users/me/watchlist'),
+  add:    (movieId: number): Promise<void> => post(`/users/me/watchlist/${movieId}`, {}),
+  remove: (movieId: number): Promise<void> => del(`/users/me/watchlist/${movieId}`),
 }
 
 // ─── Favorites ────────────────────────────────────────────────────────────────
 
 export const favoritesApi = {
-  list:   (): Promise<MovieSummary[]> => get('/favorites'),
-  add:    (movieId: number): Promise<void> => post(`/favorites/${movieId}`, {}),
-  remove: (movieId: number): Promise<void> => del(`/favorites/${movieId}`),
+  list:   (): Promise<MovieSummary[]> => get('/users/me/favorites'),
+  add:    (movieId: number): Promise<void> => post(`/users/me/favorites/${movieId}`, {}),
+  remove: (movieId: number): Promise<void> => del(`/users/me/favorites/${movieId}`),
 }
 
 // ─── Genres ───────────────────────────────────────────────────────────────────
