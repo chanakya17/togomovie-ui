@@ -32,9 +32,9 @@ export interface Genre {
 
 export interface WatchLink {
   id: number
-  platform: string
-  url: string
-  quality: string | null
+  providerName: string
+  watchUrl: string
+  regionCode: string | null
 }
 
 // ─── Pagination ───────────────────────────────────────────────────────────────
@@ -64,21 +64,23 @@ export interface AuthResponse {
   token: string
   username: string
   email: string
+  role: string
 }
 
 // ─── Review ───────────────────────────────────────────────────────────────────
 
 export interface Review {
   id: number
-  rating: number
-  comment: string | null
+  userId: number
   username: string
+  rating: number
+  content: string | null
   createdAt: string
 }
 
 export interface ReviewRequest {
   rating: number
-  comment?: string
+  content?: string
 }
 
 // ─── Chat ─────────────────────────────────────────────────────────────────────
